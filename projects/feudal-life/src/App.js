@@ -17,10 +17,10 @@ const COLORS = [
   [0, 0xff, 0], // green | WYLD
   [0xff, 0xd7, 0], // orange | SUMMER PEASANT
   [0xff, 0, 0], // red | SUMMER KNIGHT
-  [0xff, 0xff, 0], // yellow | SUMMER QUEEN
+  [0, 0xff, 0], // yellow | SUMMER QUEEN
   [0, 0, 0xff], // blue | WINTER PEASANT
   [0xee, 0x82, 0xee], // purple | WINTER KNIGHT
-  [0x00, 0x80, 0x80] // teal | WINTER QUEEN
+  [0x00, 0xff, 0xff] // teal | WINTER QUEEN
 ]
 
 /**
@@ -49,7 +49,6 @@ class CCACanvas extends Component {
    */
   animFrame() {
     let cells = this.cca.getCells();
-    console.log("Got these cells: ", cells);
 
     let canvas = this.refs.canvas;
     let ctx = canvas.getContext('2d');
@@ -72,13 +71,17 @@ class CCACanvas extends Component {
     for(let row = 0; row < this.props.height; row++) {
       for(let col = 0; col < this.props.width; col++){
         let index = (row * this.props.width + col) * 4;
-
+        
         let currentNumber = cells[row][col];
-
-        buffer[index + 0] = COLORS[currentNumber][0]; // Red: 0xff == 255, full intensity
-        buffer[index + 1] = COLORS[currentNumber][1]; // Green: zero intensity
-        buffer[index + 2] = COLORS[currentNumber][2]; // Blue: zero intensity
-        buffer[index + 3] = 0xff; // Alpha: 0xff == 255, fully opaque
+        try {
+          buffer[index + 0] = COLORS[currentNumber][0]; // Red: 0xff == 255, full intensity
+          buffer[index + 1] = COLORS[currentNumber][1]; // Green: zero intensity
+          buffer[index + 2] = COLORS[currentNumber][2]; // Blue: zero intensity
+          buffer[index + 3] = 0xff; // Alpha: 0xff == 255, fully opaque
+        } catch(e) {
+          console.log(currentNumber, row, col);
+          console.log(e);
+        }
       }
     }
 
