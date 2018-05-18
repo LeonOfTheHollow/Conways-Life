@@ -14,13 +14,13 @@ import './App.css';
 // ]
 
 const COLORS = [
-  [0, 0xff, 0], // green | WYLD
+  [0, 0, 0], // green | WYLD
   [0xff, 0xd7, 0], // orange | SUMMER PEASANT
   [0xff, 0, 0], // red | SUMMER KNIGHT
   [0, 0xff, 0], // yellow | SUMMER QUEEN
   [0, 0, 0xff], // blue | WINTER PEASANT
-  [0xee, 0x82, 0xee], // purple | WINTER KNIGHT
-  [0x00, 0xff, 0xff] // teal | WINTER QUEEN
+  [0x00, 0xff, 0xff], // teal | WINTER KNIGHT
+  [0xee, 0x82, 0xee], // purple | WINTER QUEEN
 ]
 
 /**
